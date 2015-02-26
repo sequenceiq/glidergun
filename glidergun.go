@@ -17,6 +17,7 @@ import (
 
 	"github.com/inconshreveable/go-update"
 	"github.com/progrium/go-basher"
+	"github.com/skratchdot/open-golang/open"
 )
 
 const (
@@ -81,6 +82,10 @@ func Selfupdate(args []string) {
 	fmt.Println("Updated.")
 }
 
+func OpenBrowser(args []string) {
+	open.Start(args[0])
+}
+
 func Checksum(args []string) {
 	if len(args) < 1 {
 		fatal("No algorithm specified")
@@ -103,8 +108,9 @@ func Checksum(args []string) {
 func main() {
 	os.Setenv("GUN_VERSION", Version)
 	basher.Application(map[string]func([]string){
-		"checksum":   Checksum,
-		"selfupdate": Selfupdate,
+		"checksum":    Checksum,
+		"selfupdate":  Selfupdate,
+		"openbrowser": OpenBrowser,
 	}, []string{
 		"include/fn.bash",
 		"include/cmd.bash",
