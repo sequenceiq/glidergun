@@ -58,9 +58,9 @@ cmd-ns() {
 		echo "Available commands:"
 		for cmd in $(cmd-list "$ns"); do
 			printf "  %-24s %s\n" "$cmd" "$(fn-desc "${CMDS["$ns:$cmd"]}")"
-			#for subcmd in $(cmd-list "$cmd"); do
-			#	printf "    %-24s %s\n" "$subcmd" "$(fn-desc "${CMDS["$cmd:$subcmd"]}")"
-			#done
+			for subcmd in $(cmd-list "$cmd"); do
+				printf "    %-24s %s\n" "$subcmd" "$(fn-desc "${CMDS["$cmd:$subcmd"]}")"
+			done
 		done
 		echo
 		exit $status
