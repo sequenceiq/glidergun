@@ -14,6 +14,7 @@ declare -A color_table=(
 	["purple-bright"]='\033[01;35m'
 	["cyan-bright"]='\033[01;36m'
 	["white-bright"]='\033[01;37m'
+	["gray"]='\033[01;90m'
 )
 
 color-init() {
