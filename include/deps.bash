@@ -34,8 +34,9 @@ deps-install() {
 	fi
 	IFS=' ' read v t url checksum <<< "$dep"
 	tmpdir="$(deps-dir)/tmp"
-	mkdir -p "$tmpdir"
-	tmpfile="${tmpdir:?}/$name"
+    downdir="$(deps-dir)/tmp/download"
+	mkdir -p "$downdir"
+	tmpfile="${downdir:?}/$name"
 	curl -Ls $url > "$tmpfile"
 	if [[ "$checksum" ]]; then
 		if ! [[ "$(cat "$tmpfile" | checksum md5)" = "$checksum" ]]; then
