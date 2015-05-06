@@ -46,10 +46,10 @@ deps-install() {
 	fi
 	cd "$tmpdir"
 	filename="$(basename "$url")"
-	extension="${filename#*.}"
+	extension="${filename##*.}"
 	case "$extension" in
 		zip) unzip "$tmpfile" > /dev/null;;
-		tgz|tar.gz) tar -zxf "$tmpfile" > /dev/null;;
+		tgz|gz) tar -zxf "$tmpfile" > /dev/null;;
 	esac
 	install="$(echo "$index" | grep "^# install: " || true)"
 	if [[ "$install" ]]; then
@@ -59,7 +59,7 @@ deps-install() {
 		unset PREFIX
 	else
 		chmod +x "$tmpfile"
-		mv "$tmpfile" "$(deps-dir)/bin"
+        mv "$tmpdir/$name" "$(deps-dir)/bin"
 	fi
 	cd - > /dev/null
 	rm -rf "${tmpdir:?}"
