@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Bash version 4.3.30 is included into gun binary
+- Binary is statically compiled
 
 ## [0.0.7] - 2015-02-20
 ### Added

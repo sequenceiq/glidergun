@@ -6,9 +6,9 @@ VERSION=0.0.7
 build:
 	rm -rf .gun/bin && mkdir -p .gun/bin
 	cp .bin/linux/* .gun/bin/ && go-bindata include .gun/bin
-	mkdir -p build/Linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/Linux/$(BINARYNAME)
+	mkdir -p build/Linux  && GOOS=linux  CGO_ENABLED=0 go build -a -installsuffix cgo -ldflags "-X main.Version $(VERSION)" -o build/Linux/$(BINARYNAME)
 	cp .bin/osx/* .gun/bin/ && go-bindata include .gun/bin
-	mkdir -p build/Darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/Darwin/$(BINARYNAME)
+	mkdir -p build/Darwin && GOOS=darwin CGO_ENABLED=0 go build -a -installsuffix cgo -ldflags "-X main.Version $(VERSION)" -o build/Darwin/$(BINARYNAME)
 
 install: build
 	install build/$(shell uname -s)/gun /usr/local/bin
