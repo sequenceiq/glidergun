@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - Calling help explicitly will show second level commands
 - `GUN_PATH` used for module sourcing with `PATH`-like semantics
 - Added some initial remote module libraries
+- Auto-export for modul functions starting with `cmd:`
 
 ### Removed
 
